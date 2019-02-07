@@ -20,28 +20,12 @@ const colors = {
 }
 
 
-const Layout = ComposedComponent => {
-  class HOC extends Component {
-  
-
-    static async getInitialProps(ctx) {
-      const { req } = ctx;
-
-      const subProps = await loadGetInitialProps(ComposedComponent, ctx);
-
-      return {
-        ...subProps,
-      };
-    }
-
-    render() {
-      const { links, children } = this.props;
-    return (
+const Layout = ({children}) => (
       <div className="wrapper">
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta charSet="utf-8" />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yatra+One|Suez+One"/>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yatra+One"/>
         </Head>
         <style jsx global>{`
 
@@ -70,28 +54,17 @@ const Layout = ComposedComponent => {
           .top-nav a {
             text-decoration: none;
           }
-          
-          button a {
-            font-family: "Suez One";
-            font-size: 14px;
-            color: #fff;
-            text-decoration: none;
-          }
           .main-wrapper {
               flex: 1;
           }
           
         `}</style>
-        <Nav links={links} />
+        <Nav />
         <div className="main-wrapper">
-          <ComposedComponent {...this.props} />
+          {children}
         </div>
         <Footer />
       </div>
-      )
-    }
-  }
-  return HOC;
-}
+);
 
-export default Layout
+export default Layout;
