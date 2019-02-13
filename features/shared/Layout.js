@@ -1,8 +1,9 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import Head from 'next/head';
 import Footer from './Footer';
 import Nav from '../shared/Nav';
 import { loadGetInitialProps } from 'next/dist/lib/utils';
+import Link from 'next/link'
 
 import { connect } from 'react-redux';
 let fonts = ['Suez+One', 'Yatra+One'];
@@ -10,19 +11,19 @@ let fonts = ['Suez+One', 'Yatra+One'];
 let link = 'https://fonts.googleapis.com/css?family=';
 
 const makeLink = url => (arr = fonts) => {
-    return url.concat(arr.join('|'));
-}
+  return url.concat(arr.join('|'));
+};
 
 const colors = {
   'jet-black': '#363732',
   'st-pat-blue': '#274C77',
   'glitter-white': '#E7ECEF'
-}
+};
 
 
 const Layout = ComposedComponent => {
   class HOC extends Component {
-  
+
 
     static async getInitialProps(ctx) {
       const { req } = ctx;
@@ -30,22 +31,20 @@ const Layout = ComposedComponent => {
       const subProps = await loadGetInitialProps(ComposedComponent, ctx);
 
       return {
-        ...subProps,
+        ...subProps
       };
     }
 
     render() {
       const { links, children } = this.props;
-    return (
-      <div className="wrapper">
-        <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta charSet="utf-8" />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yatra+One|Suez+One"/>
-        </Head>
-        <style jsx global>{`
-
-
+      return (
+        <div className="wrapper">
+          <Head>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta charSet="utf-8" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Yatra+One|Suez+One"/>
+          </Head>
+          <style jsx global>{`
           body { 
             background: #fff;
             margin: 0;
@@ -82,16 +81,17 @@ const Layout = ComposedComponent => {
           }
           
         `}</style>
-        <Nav links={links} />
-        <div className="main-wrapper">
-          <ComposedComponent {...this.props} />
+          <Nav links={links} />
+          <div className="main-wrapper">
+            <ComposedComponent {...this.props} />
+            <Link href={`posts?id=345`} as={`posts/345`}><button>Navigate to article page</button></Link>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-      )
+      );
     }
   }
   return HOC;
-}
+};
 
-export default Layout
+export default Layout;

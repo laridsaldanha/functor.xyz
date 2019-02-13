@@ -1,0 +1,2 @@
+#### About
+If I hadn't pursued learning about web application development then none of *this* would have come to fruition. I'll always be grateful for that beatuiful system of underwater cables that connects us citizens of the world to the web. As much as I am conflicted on smart-phones, I knew that this growth was only going to continue and there would be a high demand for doing something which I really enjoyed.
